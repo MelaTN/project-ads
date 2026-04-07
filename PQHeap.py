@@ -5,11 +5,14 @@ def createEmptyPQ():
 ## extractMin and minHeapify ##
 
 def extractMin(A):
-    "Returns and removes the minimum of the min-priority-queue A"
+    "Returns and removes the minimum of the min-priority-queue A. "
+    "Assumed that A is non-empty. " 
 
     min = A[0] # Safes the min (root)
-    A[0] = A.pop() # Replaces root with the last leave
-    minHeapify(A,0) # Restores heap-order
+    if len(A)>1:
+        A[0] = A.pop() # Replaces root with the last leave
+        minHeapify(A,0) # Restores heap-order
+   
     return min
 
 def minHeapify(A,i):
@@ -38,13 +41,13 @@ def minHeapify(A,i):
 
 def insert(A,e):
     A.append(e)
-    i = len(A)
+    i = len(A)-1
     while i > 0 and A[parent(i)] > A[i]:
         # Exchange A[i] and A[parent(i)]
         temp = A[i]
         A[i] = A[parent(i)]
         A[parent(i)] = temp
-        i = A[parent(i)]
+        i = parent(i)
 
 
 ## Parent and children of node i ##
