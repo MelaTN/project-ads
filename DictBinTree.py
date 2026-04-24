@@ -1,7 +1,12 @@
+class BinNode:
+    def __init__(self, key: float, left = None, right = None):
+        self.key = key
+        self.left = left   
+        self.right = right
+
 class DictBinTree:
     def __init__(self, root: BinNode = None):
         self.root = root
-
 
     ## Tree search ##
 
@@ -26,10 +31,10 @@ class DictBinTree:
         y = None 
         while x != None:
             y = x
-        if k < x.key:
-            x = x.left
-        else:
-            x = x.right
+            if k < x.key:
+                x = x.left
+            else:
+                x = x.right
         
         # Now, x is poiting to a None and y is poiting to the 
         # parent of this leaf. In order to replace the value None in the
@@ -48,20 +53,11 @@ class DictBinTree:
         "Returns a sorted list of the keys in the binary search tree."
         return self._orderedTraversal(self.root, [], k)
 
-    def _orderedTraversal(self, x, l:list, k):
-        ""       
+    def _orderedTraversal(self, x, l, k):
+        "Returns an ordered list of the keys in the binary subtree with root x."       
         l.append(self.orderedTraversal(x.left, k))
         l.append(x.key)
         l.append(self.orderedTraversal(x.right, k))
 
         return l
-
-
-class BinNode:
-    def __init__(self, key: float, left: BinNode = None, right: BinNode = None):
-        self.key = key
-        self.left = left   
-        self.right = right     
-
-
     
