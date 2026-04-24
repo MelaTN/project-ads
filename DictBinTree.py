@@ -50,17 +50,12 @@ class DictBinTree:
     ## Inorder tree walk ##
 
     def orderedTraversal(self):
-        "Returns a sorted list of the keys in the binary search tree."
-        return self._orderedTraversal(self, self.root, [])
+        return self._orderedTraversal(self.root, [])
 
-    def _orderedTraversal(self, x, l):
-        "Returns an ordered list of the keys in the binary subtree with root x."       
-
+    def _orderedTraversal(self, x, keys):
+        ""
         if x != None:
-            leftSubTree = DictBinTree(x.left)
-            rightSubTree = DictBinTree(x.right)
-            l.append(leftSubTree._orderedTraversal())
-            l.append(x.key)
-            l.append(rightSubTree._orderedTraversal())
-        return l
-    
+            self._orderedTraversal(x.left, keys)
+            keys.append(x.key)
+            self._orderedTraversal(x.right, keys)
+        return keys
